@@ -1,9 +1,11 @@
-
+# 1️⃣ Base image (Ubuntu 20.04)
 FROM ubuntu:focal
 
+# install system dependency
 RUN apt-get update
 RUN apt-get install -y curl
-RUN sudo install -y node
+RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash - \
+
 RUN apt-get  install -y git 
 
 WORKDIR /home/app
@@ -18,6 +20,6 @@ RUN npm install
 RUN chmod +x main.sh
 RUN chmod +x script.js
 
-# Run  logic
+# Run the script main.sh logic  
 ENTRYPOINT ["/home/app/main.sh"]
 # So when ECS or Docker runs this image, it executes: /home/app/main.sh
